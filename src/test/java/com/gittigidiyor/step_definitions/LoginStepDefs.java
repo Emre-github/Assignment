@@ -2,6 +2,7 @@ package com.gittigidiyor.step_definitions;
 
 
 import com.gittigidiyor.pages.LoginPage;
+import com.gittigidiyor.utilities.BrowserUtils;
 import com.gittigidiyor.utilities.ConfigurationReader;
 import com.gittigidiyor.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -31,20 +32,21 @@ LoginPage loginPage=new LoginPage();
     }
 
     @When("the user enters username and password")
-    public void the_user_enters_and_username_and_password() {
+    public void the_user_enters_username_and_password() {
         String username = ConfigurationReader.get("username");
         String password = ConfigurationReader.get("password");
-        loginPage.login(username,password);
 
+        loginPage.login(username,password);
+        BrowserUtils.waitFor(3);
     }
 
-    @Then("the user should be able to login")
-    public void the_user_should_be_able_to_login() {
-        String expected="Hesabım";
-        String hesabım="//*[text()='Hesabım']";
-        String actual=Driver.get().findElement(By.xpath(hesabım)).getText();
+    @Then("the user should be able to login successfully")
+    public void the_user_should_be_able_to_login_successfully() {
+       // String expected="Hesabım";
+        //String siparislerim="//*[@class='gekhq4-4 egoSnI']";
+        //String actual=Driver.get().findElement(By.xpath(siparislerim)).getText();
+        //Assert.assertTrue(" ",actual.contains(expected));
 
-        Assert.assertTrue(" ",actual.contains(expected));
 
 
     }

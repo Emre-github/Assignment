@@ -5,14 +5,15 @@ import com.gittigidiyor.utilities.BrowserUtils;
 import com.gittigidiyor.utilities.Driver;
 import io.cucumber.java.en.*;
 import com.gittigidiyor.pages.BasePage;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class AddingToBasketStepDefs {
 
@@ -34,6 +35,10 @@ BasketPage basketPage=new BasketPage();
         WebElement secondPage=basketPage.secondpage;
         secondPage.click();
         BrowserUtils.waitFor(2);
+        String secondPageExpected="Bilgisayar - GittiGidiyor - 2/100";
+        String actualSecondPage=Driver.get().getTitle();
+        Assert.assertEquals(actualSecondPage,secondPageExpected);
+
     }
 
     @When("the user selects an item from second page of the item's page")
@@ -44,58 +49,35 @@ BasketPage basketPage=new BasketPage();
     }
 
     @When("the user keeps the information of the item in txt file")
-    public void the_user_keeps_the_information_of_the_item_in_txt_file() {
-        String infoOfItem=Driver.get().findElement((By) basketPage.choosenItemInfo).getText();
-        String priceOfItem=Driver.get().findElement((By) basketPage.priceChoosenItem).getText();
-        try {
-            File file = new File("fileInfoOfChosenItem");
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-                bw.write((infoOfItem));
-                bw.write((priceOfItem));
-
-            bw.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void the_user_keeps_the_information_of_the_item_in_txt_file() throws IOException {
+        //Driver.get().findElement()
+        //String infoOfItem=Driver.get().findElement(basketPage.choosenItemInfo).getText();
+        //String priceOfItem=Driver.get().findElement((By) basketPage.priceChoosenItem).getText();
+        //BrowserUtils.getElementsText((By) basketPage.choosenItemInfo);
+        //BrowserUtils.getElementsText((By) basketPage.priceChoosenItem);
+       // File file1 = new File("itemInfo.txt");
+        //FileWriter fw = new FileWriter(file1);
+        //WebElement choosenItemInfo=Driver.get().findElement((By) basketPage.choosenItemInfo);
+        //String itemInfo=choosenItemInfo.getText();
+        //System.out.println(itemInfo);
+        //fw.write(String.valueOf(itemInfo));
+        //List<WebElement> list={choosenItemInfo,basketPage.priceChoosenItem};
+        //BrowserUtils.getElementsText();
     }
 
     @Then("the user adds the item to the basket")
     public void the_user_adds_the_item_to_the_basket() {
-       WebElement addingBasket=basketPage.addingBasket;
-       addingBasket.click();
-       String priceOnItemPage=Driver.get().findElement((By) basketPage.priceChoosenItem).getText();
-       String priceInBasket=Driver.get().findElement((By) basketPage.priceBasket).getText();
-       Assert.assertEquals(priceOnItemPage,priceInBasket);
+        //String popup="//*[@class='wis-clsbtn-99131']";
+        //Driver.get().findElement(By.xpath(popup)).click();
+        WebElement addingBasket=basketPage.addingBasket;
+        addingBasket.click();
+        WebElement basket=basketPage.basket;
+        basket.click();
     }
 
 
 
 
 
-    @Given("the user has already added an item to the basket")
-    public void the_user_has_already_added_an_item_to_the_basket() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("the user increases the quantity of the item as {int}")
-    public void the_user_increases_the_quantity_of_the_item_as(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @When("the user deletes items from the basket")
-    public void the_user_deletes_items_from_the_basket() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Then("the basket should be empty")
-    public void the_basket_should_be_empty() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
 }

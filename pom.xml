@@ -48,10 +48,16 @@
         <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc8</artifactId>
-            <version>21.1.0.0</version>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.3.2</version>
+            <scope>test</scope>
+        </dependency>
 
 
 

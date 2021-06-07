@@ -14,7 +14,7 @@ public class BasketPage extends BasePage{
     @FindBy(xpath = "(//*[@href='/arama/?k=bilgisayar&sf=2'])[1]")
     public WebElement secondpage;
 
-    @FindBy(xpath = "//*[@src='https://mcdn01.gittigidiyor.net/69537/tn30/695373966_tn30_0.jpg?162297']")
+    @FindBy(xpath = "(//*[contains(text(),'Dell Inspiron')])[2]")
     public WebElement choosenItem;
 
     @FindBy(xpath = "//*[@id='sp-title']")
@@ -28,8 +28,16 @@ public class BasketPage extends BasePage{
     @FindBy(xpath = "//*[@id='add-to-basket']")
     public WebElement addingBasket;
 
+    @FindBy(className = "basket-title")
+    public WebElement basket;
+
     @FindBy(xpath = "//*[@class='amount']")
     public WebElement amountitem;
 
+    @FindBy(css = ".gg-icon.gg-icon-bin-medium")
+    public  WebElement delete;
+
+    @FindBy(xpath = "//div[text()='Ürün Toplamı (0 Adet)']")
+    public WebElement numberOfItems;
 
 }
